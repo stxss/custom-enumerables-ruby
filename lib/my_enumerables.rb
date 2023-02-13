@@ -1,6 +1,14 @@
 module Enumerable
   # Your code goes here
+  def my_each_with_index
+    return to_enum(:my_each_with_index) unless block_given?
 
+    idx = 0
+    for i in self
+      yield i, idx
+      idx += 1
+    end
+  end
 end
 
 # You will first have to define my_each
@@ -17,7 +25,4 @@ class Array
       yield i
     end
   end
-
 end
-
-Array.new.my_each
