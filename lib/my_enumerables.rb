@@ -17,6 +17,41 @@ module Enumerable
     my_each { |i| results << i if yield i }
     results
   end
+
+  def my_all?
+    return to_enum(:my_all?) unless block_given?
+
+    results = []
+    my_each { |i| results << i if yield i }
+    results.length == self.length
+  end
+
+  def my_none?
+    return to_enum(:my_none?) unless block_given?
+
+    results = []
+    my_each { |i| results << i if yield i }
+    results.empty? ? true : false
+  end
+
+  def my_count
+    return size unless block_given?
+
+    results = []
+    my_each { |i| results << i if yield i }
+    results.size
+  end
+
+  def my_map
+    results = []
+    my_each { |i| results << (yield i) }
+    results
+  end
+
+
+  def my_inject
+
+  end
 end
 
 # You will first have to define my_each
