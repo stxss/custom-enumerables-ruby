@@ -9,6 +9,14 @@ module Enumerable
       idx += 1
     end
   end
+
+  def my_select
+    return to_enum(:my_select) unless block_given?
+
+    results = []
+    my_each { |i| results << i if yield i }
+    results
+  end
 end
 
 # You will first have to define my_each
@@ -26,3 +34,4 @@ class Array
     end
   end
 end
+
