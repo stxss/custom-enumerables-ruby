@@ -48,9 +48,10 @@ module Enumerable
     results
   end
 
-
-  def my_inject
-
+  def my_inject(initial_value = nil)
+    sum = initial_value.nil? ? self[0] : initial_value
+    my_each { |num| sum = yield(sum, num) }
+    sum
   end
 end
 
@@ -69,4 +70,3 @@ class Array
     end
   end
 end
-
